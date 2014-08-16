@@ -1,0 +1,49 @@
+package com.elrood.main;
+import java.util.Random;
+public class GameEngine {
+
+	private short[][] grid;
+
+	Visualizer gui;
+
+	public GameEngine(Visualizer gui) {
+		this.gui = gui;
+		grid = new short[4][4];
+	}
+
+	public void playGame(int direction) {
+		calculateMatrix(direction);
+	}
+
+	public void calculateMatrix(int direction) {
+		// TODO implement me
+		//eto edin commit
+	}
+	
+	public void startGame() {
+
+	Random rand = new Random();
+	short row1 = (short)rand.nextInt(4);
+	short col1 = (short)rand.nextInt(4);
+	short row2 = (short)rand.nextInt(4);
+	short col2 = (short)rand.nextInt(4);
+	
+	boolean cell_select = false;
+			
+	while (cell_select == false) {
+		if ((row1 != row2) || (col1 !=col2)) {
+			cell_select = true;
+		} else {
+			row2 = (short)rand.nextInt(4);
+			col2 = (short)rand.nextInt(4);
+		}
+	}
+	grid[row1][col1] = (short) ((rand.nextInt(2) < 1)? 2:4);
+	grid[row2][col2] = (short) ((rand.nextInt(2) < 1)? 2:4);
+		//Тук давам 50% шанс да е 2 или 4 - Random  върти между 0 и 1. 
+		//Ако получената случайно стойност е 0, плочката получава стойност 2, 
+		//а ако случайната стойност е 1 - плочката получава стойност 4. 
+		//Мислих го да върти от 0 до 4, но ще прави празни обороти в случаите, различни от 2 и 4.  
+     }
+
+}
