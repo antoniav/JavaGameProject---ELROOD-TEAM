@@ -1,0 +1,66 @@
+import java.util.ArrayList;
+import java.util.Random;
+
+
+public class AddRandom {
+	
+	static short [][] grid = { {0, 0, 0, 0},
+            			       {0, 0, 0, 0},
+            			       {0, 0, 0, 0},
+            			       {0, 0, 0, 0}};
+
+	public static void main(String[] args) {
+		
+		printGrid();
+		
+		for (int i = 0; i <16; i++) {			
+			addRandom();
+			
+			System.out.println();
+			
+			printGrid();
+			
+			System.out.println();
+		}
+	}
+
+	private static void addRandom() {
+		Random randGenerator =  new Random();
+		
+		//scan the matrix, find the positions with value 0 and store them 
+		//in an ArrayList 
+		ArrayList<Integer> zeroPositions =  new ArrayList<>();
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				if (grid[i][j] == 0){
+					int index = i * 10 + j;
+					zeroPositions.add(index);
+				}
+			}			
+		}
+		
+		int zerosCount = zeroPositions.size();
+		int randomPosition = randGenerator.nextInt(zerosCount);
+		int randomPositionIndex = zeroPositions.get(randomPosition);
+		
+		//add a random Tile (2 or 4) at a random zero position
+		grid [randomPositionIndex / 10][randomPositionIndex % 10] = randomTile();
+	}
+
+	private static void printGrid() {
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				System.out.print(grid[i][j] + " ");
+			}
+			System.out.println();
+		}
+		
+	}
+
+	private static short randomTile() {
+		Random randGenerator = new Random();
+		int rand = randGenerator.nextInt(10);
+		if (rand > 6) {
+			return 4;
+		} else {
+			return 2;
